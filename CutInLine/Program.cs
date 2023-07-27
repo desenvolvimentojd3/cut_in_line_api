@@ -1,5 +1,6 @@
 using System.Data;
 using System.Text;
+using CutInLine;
 using CutInLine.Models.GlobalException;
 using CutInLine.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -41,6 +42,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWorkImplementation>();
+builder.Services.AddRepositoryDepencyInjection();
 
 var app = builder.Build();
 

@@ -39,3 +39,4 @@ C:\cut_in_line_api\CutInLine\obj\Debug\net6.0\refint\CutInLine.dll
 C:\cut_in_line_api\CutInLine\obj\Debug\net6.0\CutInLine.pdb
 C:\cut_in_line_api\CutInLine\obj\Debug\net6.0\CutInLine.genruntimeconfig.cache
 C:\cut_in_line_api\CutInLine\obj\Debug\net6.0\ref\CutInLine.dll
+C:\cut_in_line_api\CutInLine\bin\Debug\net6.0\Dapper.dll
