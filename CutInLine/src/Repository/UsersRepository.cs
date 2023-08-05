@@ -16,16 +16,28 @@ namespace CutInLine.Repository
 
         public async Task<int> Create(Users Item)
         {
-            var sql = "";
+            var sql = @"
 
-            sql += "insert into Users (                             ";
-            sql += "SName, SLogin, SHash, SAuthToken, SCellPhone,   ";
-            sql += "SPassWord, SCountry, DDateCreated               ";
-            sql += ")                                               ";
-            sql += "values (                                        ";
-            sql += "@SName,@SLogin,@SHash,@SAuthToken,@SCellPhone,  ";
-            sql += "@SPassWord,@SCountry,@DDateCreated              ";
-            sql += ") returning UserId;                             ";
+            INSERT INTO Users (
+                SName, 
+                SLogin,
+                SHash,
+                SAuthToken,
+                SCellPhone,
+                SPassWord,
+                SCountry,
+                DDateCreated,
+            ) VALUES (
+                @SName, 
+                @SLogin,
+                @SHash,
+                @SAuthToken,
+                @SCellPhone,
+                @SPassWord,
+                @SCountry,
+                @DDateCreated,
+
+            ) RETURNING IdUsers; ";
 
             return await _unitOfWork.Connection.ExecuteScalarAsync<int>(sql, Item);
         }
@@ -39,31 +51,46 @@ namespace CutInLine.Repository
 
         public async Task Update(Users Item)
         {
-            var sql = "";
+            var sql = @"
 
-            sql += "update Users set                                      ";
-            sql += "SName=@SName, SLogin=@SLogin, SAuthToken=@SAuthToken, ";
-            sql += "SCellPhone=@SCellPhone, SPassWord=@SPassWord,         ";
-            sql += "SCountry=@SCountry, DDateCreated=@DDateCreated        ";
-            sql += "where idUsers=@idUsers and token=@token               ";
-
+            UPDATE Users SET
+                SName = @SName,
+                SLogin = @SLogin,
+                SAuthToken = @SAuthToken,
+                SCellPhone = @SCellPhone,
+                SPassWord = @SPassWord,
+                SCountry = @SCountry,
+                DDateCreated = @DDateCreated
+            WHERE idUsers = @idUsers and SHash=@SHash; ";
             await _unitOfWork.Connection.ExecuteAsync(sql, Item);
         }
 
-        public async Task<Users?> GetById(int id, string token)
+        public async Task<Users?> GetById(int id)
         {
-            var sql = "";
+            var sql = @"
 
-            sql += "select                           ";
-            sql += "  Users.*                        ";
-            sql += "from Users                       ";
-            sql += "where Users.userId = @_idUsers   ";
-            sql += "and   Users.token  = @_token     ";
+            select                                     
+              Users.*
+            from Users                               
+            where Users.IdUsers = @_id  ";
 
-            var resultado =
-                await _unitOfWork
-                    .Connection
-                    .QueryAsync<Users>(sql, new { _id = id, _token = token });
+            var resultado = await _unitOfWork.Connection.QueryAsync<Users>
+            (sql, new { _id = id });
+
+            return resultado.FirstOrDefault();
+        }
+
+        public async Task<Users?> GetByLogin(string login)
+        {
+            var sql = @"
+
+            select                                     
+              Users.*
+            from Users                               
+            where Users.slogin = @_login ";
+
+            var resultado = await _unitOfWork.Connection.QueryAsync<Users>
+            (sql, new { _login = login });
 
             return resultado.FirstOrDefault();
         }
