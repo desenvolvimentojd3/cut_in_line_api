@@ -43,6 +43,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWorkImplementation>();
 builder.Services.AddRepositoryDepencyInjection();
+builder.Services.AddInterfaceDepencyInjection();
 
 var app = builder.Build();
 

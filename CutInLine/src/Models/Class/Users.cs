@@ -1,16 +1,17 @@
+
 namespace CutInLine.Models.Class
 {
     public class Users
     {
-        public int? UserId { get; set; }
-        public int? SLogin { get; set; }
-        public string? SName { get; set; }
-        public string? SHash { get; set; }
-        public string? SAuthToken { get; set; }
-        public string? SCellPhone { get; set; }
-        public string? SPassWord { get; set; }
-        public string? SCountry { get; set; }
-        public DateTime? DDateCreated { get; set; }
+        public int UserId { get; set; } = int.MinValue;
+        public string SLogin { get; set; } = string.Empty;
+        public string SName { get; set; } = string.Empty;
+        public string SHash { get; set; } = string.Empty;
+        public string SAuthToken { get; set; } = string.Empty;
+        public string SCellPhone { get; set; } = string.Empty;
+        public string SPassWord { get; set; } = string.Empty;
+        public string SCountry { get; set; } = string.Empty;
+        public DateTime DDateCreated { get; set; } = DateTime.MinValue;
 
         public Users()
         {
