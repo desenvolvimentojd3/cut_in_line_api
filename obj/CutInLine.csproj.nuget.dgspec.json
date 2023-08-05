@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\cut_in_line_api\\CutInLine\\CutInLine.csproj": {}
+    "E:\\Projetos\\cut_in_line_api\\CutInLine.csproj": {}
   },
   "projects": {
-    "C:\\cut_in_line_api\\CutInLine\\CutInLine.csproj": {
+    "E:\\Projetos\\cut_in_line_api\\CutInLine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cut_in_line_api\\CutInLine\\CutInLine.csproj",
+        "projectUniqueName": "E:\\Projetos\\cut_in_line_api\\CutInLine.csproj",
         "projectName": "CutInLine",
-        "projectPath": "C:\\cut_in_line_api\\CutInLine\\CutInLine.csproj",
-        "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-        "outputPath": "C:\\cut_in_line_api\\CutInLine\\obj\\",
+        "projectPath": "E:\\Projetos\\cut_in_line_api\\CutInLine.csproj",
+        "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
+        "outputPath": "E:\\Projetos\\cut_in_line_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
