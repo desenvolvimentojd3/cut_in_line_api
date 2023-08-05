@@ -42,6 +42,7 @@ namespace CutInLine.Models.Implementation
                 };
             }
 
+            user.DDateCreated = DateTime.Now;
             user.SHash = Encripty.GenerateSmallHash(user.SLogin);
             user.SPassWord = Encripty.GenerateSmallHash(user.SPassWord.ToUpper());
 
