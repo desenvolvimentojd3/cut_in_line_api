@@ -37,7 +37,14 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
 // Add services to the container.
+builder.Services.AddCors(options => options.AddPolicy("AllowAnyOrigin",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(origin => true))
+            );
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -54,6 +61,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAnyOrigin");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
