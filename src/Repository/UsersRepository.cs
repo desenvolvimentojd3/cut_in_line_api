@@ -26,7 +26,7 @@ namespace CutInLine.Repository
                 SCellPhone,
                 SPassWord,
                 SCountry,
-                DDateCreated,
+                DDateCreated
             ) VALUES (
                 @SName, 
                 @SLogin,
@@ -35,16 +35,16 @@ namespace CutInLine.Repository
                 @SCellPhone,
                 @SPassWord,
                 @SCountry,
-                @DDateCreated,
+                @DDateCreated
 
-            ) RETURNING IdUsers; ";
+            ) RETURNING userId; ";
 
             return await _unitOfWork.Connection.ExecuteScalarAsync<int>(sql, Item);
         }
 
         public async Task Delete(int Id, string token)
         {
-            await _unitOfWork.Connection.ExecuteAsync("delete from Users WHERE idUsers=@id and token=@_token ",
+            await _unitOfWork.Connection.ExecuteAsync("delete from Users WHERE userId=@id and token=@_token ",
 
             new { id = Id, _token = token });
         }
@@ -61,7 +61,7 @@ namespace CutInLine.Repository
                 SPassWord = @SPassWord,
                 SCountry = @SCountry,
                 DDateCreated = @DDateCreated
-            WHERE idUsers = @idUsers and SHash=@SHash; ";
+            WHERE userId = @userId and SHash=@SHash; ";
             await _unitOfWork.Connection.ExecuteAsync(sql, Item);
         }
 
@@ -72,7 +72,7 @@ namespace CutInLine.Repository
             select                                     
               Users.*
             from Users                               
-            where Users.IdUsers = @_id  ";
+            where Users.userId = @_id  ";
 
             var resultado = await _unitOfWork.Connection.QueryAsync<Users>
             (sql, new { _id = id });
