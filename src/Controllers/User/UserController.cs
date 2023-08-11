@@ -1,5 +1,6 @@
 using CutInLine.Models.Class;
 using CutInLine.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CutInLine.Controllers;
@@ -22,4 +23,9 @@ public class UserController : ControllerBase
     [HttpPost]
     [Route("signin")]
     public async Task<dynamic> SignIn([FromBody] Users user) => await _user.SignIn(user);
+
+    [HttpGet]
+    [Route("auth")]
+    [Authorize]
+    public dynamic Auth() => new { success = true };
 }
