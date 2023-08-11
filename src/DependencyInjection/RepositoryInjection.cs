@@ -9,6 +9,8 @@ namespace CutInLine
         {
             //Injeção de dependencia dos repositorios
             services.AddScoped<UsersRepository>();
+            services.AddScoped<ProductsRepository>();
+            services.AddScoped<EventsRepository>();
 
             return services;
         }

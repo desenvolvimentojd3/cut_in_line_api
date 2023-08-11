@@ -10,6 +10,8 @@ namespace CutInLine
         {
             services.AddScoped<IUnitOfWork, UnitOfWorkImplementation>();
             services.AddScoped<IUsers, UsersImplementation>();
+            services.AddScoped<IEvents, EventsImplementation>();
+            services.AddScoped<IProducts, ProductsImplementation>();
 
             return services;
         }
