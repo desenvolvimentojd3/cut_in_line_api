@@ -11,7 +11,7 @@ namespace CutInLine.Models.Class
         public string SCellPhone { get; set; } = string.Empty;
         public string SPassWord { get; set; } = string.Empty;
         public string SCountry { get; set; } = string.Empty;
-        public DateTime DDateCreated { get; set; } = DateTime.MinValue;
+        public DateTime DDateCreated { get; set; } = DateTime.Now;
 
         public Users()
         {

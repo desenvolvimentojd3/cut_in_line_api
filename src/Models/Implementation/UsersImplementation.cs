@@ -22,7 +22,7 @@ namespace CutInLine.Models.Implementation
             //Verify if exists same login
             var _user = await _usersRepository.GetByLogin(user.SLogin);
 
-            if (_user != null)
+            if (_user != null && string.IsNullOrEmpty(user.SAuthToken))
             {
                 return new
                 {
@@ -31,33 +31,60 @@ namespace CutInLine.Models.Implementation
                 };
             }
 
-            var password = Utils.CheckStrongPassword(user.SPassWord);
-
-            if (!password.Success)
+            if (string.IsNullOrEmpty(user.SAuthToken))
             {
-                return new
+                var password = Utils.CheckStrongPassword(user.SPassWord);
+
+                if (!password.Success)
                 {
-                    success = true,
-                    message = password.Message
-                };
+                    return new
+                    {
+                        success = true,
+                        message = password.Message
+                    };
+                }
+
+                user.SPassWord = Encripty.GenerateSmallHash(user.SPassWord.ToUpper());
             }
 
-            user.DDateCreated = DateTime.Now;
-            user.SHash = Encripty.GenerateSmallHash(user.SLogin);
-            user.SPassWord = Encripty.GenerateSmallHash(user.SPassWord.ToUpper());
+            if (_user == null)
+            {
+                user.DDateCreated = DateTime.Now;
+                user.SHash = Encripty.GenerateSmallHash(user.SLogin);
 
-            _unitOfWork.Begin();
+                user.UserId = await _usersRepository.Create(user);
+            }
 
-            await _usersRepository.Create(user);
-
-            _unitOfWork.Commit();
+            var authorizeToken = TokenService.GerarToken(user);
 
             return new
             {
                 success = true,
-                message = ""
+                message = "",
+                authorizeToken,
+                userToken = user.SHash
             };
+        }
 
+        public async Task<dynamic> SignIn(Users pUser)
+        {
+            var user = await _usersRepository.GetByLogin(pUser.SLogin.ToUpper());
+
+            if (user == null)
+                return new { message = "Usuário ou Senha inválidos", success = true };
+
+            if (user.SPassWord != pUser.SPassWord)
+                return new { message = "Usuário ou Senha inválidos", success = false };
+
+            var authorizeToken = TokenService.GerarToken(user);
+
+            return new
+            {
+                success = true,
+                message = "",
+                authorizeToken,
+                userToken = user.SHash
+            };
         }
     }
 }
