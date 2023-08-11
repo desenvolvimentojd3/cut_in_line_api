@@ -17,5 +17,9 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [Route("signup")]
-    public async Task<dynamic> GetUsersToEvento([FromBody] Users user) => await _user.SignUp(user);
+    public async Task<dynamic> SignUp([FromBody] Users user) => await _user.SignUp(user);
+
+    [HttpPost]
+    [Route("signin")]
+    public async Task<dynamic> SignIn([FromBody] Users user) => await _user.SignIn(user);
 }
